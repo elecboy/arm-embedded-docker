@@ -5,12 +5,11 @@ RUN dpkg --add-architecture i386 && \
     apt-key add /tmp/winehq.key && \
     sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     echo "deb http://dl.winehq.org/wine-builds/debian/ stretch main" >> /etc/apt/sources.list && \
-    apt-get update -y && \
-    apt-get upgrade -y && \
+    apt-get update -y && apt-get upgrade -y && \
     apt-get install -y winehq-stable  && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/winehq.key
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/winehq.key
     
 ADD keil.tar.bz2 /
 
+ENV WINEPREFIX /opt/wine_keil
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
